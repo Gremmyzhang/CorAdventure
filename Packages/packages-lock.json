@@ -161,6 +161,15 @@
       },
       "url": "https://package.openupm.cn"
     },
+    "io.nekonya.tinax.tween": {
+      "version": "6.6.3",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "io.nekonya.tinax.core": "6.6.24"
+      },
+      "url": "https://package.openupm.cn"
+    },
     "io.nekonya.tinax.uikit": {
       "version": "6.6.23",
       "depth": 0,

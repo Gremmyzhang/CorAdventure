@@ -36,6 +36,7 @@ MonoBehaviour:
     - io.nekonya.tinax.core
     - io.nekonya.tinax.i18n
     - io.nekonya.tinax.ilruntime
+    - io.nekonya.tinax.tween
     - io.nekonya.tinax.uikit
     - io.nekonya.tinax.vfs
     - io.nekonya.tinax.xcomponent
