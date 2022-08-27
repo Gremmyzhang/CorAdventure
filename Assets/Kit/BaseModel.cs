@@ -16,9 +16,15 @@ namespace MVCBase
         /// <summary>
         /// 本地存储数据的Key, 默认为""
         /// </summary>
+
         protected virtual string GetLocalDataKey()
         {
-            return "";
+            return "playerName";
+        }
+
+        protected virtual string GetLocalDataKey(string name)
+        {
+            return name;
         }
  
         /// <summary>
@@ -36,7 +42,7 @@ namespace MVCBase
             // 在初始化Model中使用到的数据结构
             InitData();
         }
- 
+
         private void GetLocalData()
         {
             if (GetLocalDataKey() == "")
@@ -45,6 +51,7 @@ namespace MVCBase
             }
  
             string localDataStr = PlayerPrefs.GetString(GetLocalDataKey(), "");
+            
             if (localDataStr == null || localDataStr == "")
             {
                 return;
@@ -52,13 +59,32 @@ namespace MVCBase
  
             localData = JsonMapper.ToObject<D>(localDataStr);
         }
+
+        private void GetLocalData(string name)
+        {
+            if (GetLocalDataKey(name) == "")
+            {
+                return;
+            }
+ 
+            string localDataStr = PlayerPrefs.GetString(GetLocalDataKey(name), "");
+            Debug.Log(localDataStr);
+            if (localDataStr == null || localDataStr == "")
+            {
+                return;
+            }
+ 
+            localData = JsonMapper.ToObject<D>(localDataStr);
+        }
+
+
  
         /// <summary>
         /// 初始化本地数据
         /// </summary>
         protected virtual void InitData() { }
  
-        protected void SaveLocalData()
+        protected void SaveLocalData(string name)
         {
             if (GetLocalDataKey() == "")
             {
@@ -67,10 +93,10 @@ namespace MVCBase
  
             if (localData == null)
             {
-                Debug.LogError("local data is null, key: " + GetLocalDataKey());
+                Debug.LogError("local data is null, key: " + GetLocalDataKey(name));
                 return;
             }
- 
+
             string localDataStr = JsonMapper.ToJson(localData);
             PlayerPrefs.SetString(GetLocalDataKey(), localDataStr);
         }
