@@ -15,7 +15,8 @@ MonoBehaviour:
   Groups:
   - GroupName: common
     ObfuscateDirectoryStructure: 0
-    FolderPaths: []
+    FolderPaths:
+    - Assets/App/UI
     AssetPaths: []
     GroupAssetsHandleMode: 2
     ExtensionGroup: 0
@@ -27,13 +28,13 @@ MonoBehaviour:
   AssetBundleFileExtension: .xab
   GlobalVFS_Ignore_ExtName:
   - .cs
-  - exe
-  - doc
-  - docx
-  - apk
-  - so
+  - .exe
+  - .doc
+  - .docx
+  - .apk
+  - .so
   GlobalVFS_Ignore_Path_Item:
-  - Editor
   - Resources
+  - Editor
   InitWebVFSOnStart: 0
-  DefaultWebVFSBaseUrl: http://127.0.0.1:8080/files
+  DefaultWebVFSBaseUrl: http://127.0.0.1:8080/files/

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnableUIKit: 1
   UINameMode: 0
-  DefaultUIGroup: {fileID: 0}
+  DefaultUIGroup: {fileID: 11400000, guid: 8b9febf1eb834794aab64b6ec6ed173c, type: 2}
   UIRootDirectoryLoadPath: 
   UseUICamera: 0
   UICameraConfig: {fileID: 0}
