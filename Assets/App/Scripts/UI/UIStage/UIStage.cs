@@ -31,7 +31,7 @@ namespace Nekonya.CorAdventure
             Sequence mySequence = DOTween.Sequence();
             // mySequence.Append(newText.transform.DOScale(new Vector2 (1.6f, 1.6f), 0.15f));
             // mySequence.Append(newText.transform.DOScale(new Vector2 (1.56f, 1.56f), 0.1f));
-            mySequence.Append(newText.transform.DOScale(new Vector2 (1.25f, 1.25f), 0.05f));
+            mySequence.Append(newText.transform.DOScale(new Vector2 (1.25f, 1.25f), 0.02f));
             mySequence.Append(newText.transform.DOScale(new Vector2 (1.45f, 1.45f), 0.05f));
             mySequence.Append(newText.transform.DOScale(new Vector2 (1.6f, 1.6f), 0.05f));
             mySequence.Append(newText.transform.DOScale(new Vector2 (1.56f, 1.56f), 0.1f));
