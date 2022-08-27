@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEditor;
 #endif
 
-namespace Nekonya.Adventure
+namespace Nekonya.CorAdventure
 {
     public class AppStartUp : MonoBehaviour
     {
