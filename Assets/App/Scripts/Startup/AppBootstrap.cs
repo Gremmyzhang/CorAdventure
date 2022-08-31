@@ -3,7 +3,7 @@ using TinaX.VFSKit;
 using TinaX.UIKit;
 using UnityEngine;
 
-namespace Nekonya.CorAdventure
+namespace CorAdventure
 {
     /// <summary>
     /// 推荐作为App (Game) 的程序入口。该class会被TinaX反射寻找，可以同时存在多个

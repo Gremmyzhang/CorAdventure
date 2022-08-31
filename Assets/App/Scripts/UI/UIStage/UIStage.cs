@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using DG.Tweening;
 
-namespace Nekonya.CorAdventure
+namespace CorAdventure
 {
     public class UIStage : XUIBehaviour
     {
@@ -32,11 +32,9 @@ namespace Nekonya.CorAdventure
             setLocalPosition();
             textFall();
             InitDelegate();
-            // newButton.onClick.AddListener(scaleText);
-            
-            newButton.onClick.AddListener(StageController.Instance.ChangeName);
-            
+            newButton.onClick.AddListener(scaleText);
         }
+
         // 初始化model的委托
         private void InitDelegate() {
             StageModel.Instance.OnPlayerNameChange += SetName;
