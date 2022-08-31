@@ -1,54 +1,66 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
-namespace CorAdventure.SaveGame 
+namespace CorAdventure.SaveModel 
 {
     public class SaveGame
     {
         // 保存prefs
-        private void SaveByPlayerPrefs(string str, int value) 
+        public static void SaveByPlayerPrefs(string str, int value) 
         {
             PlayerPrefs.SetInt(str, value);
             PlayerPrefs.Save();
         }
 
-        private void SaveByPlayerPrefs(string str, string value) 
+        public static void SaveByPlayerPrefs(string str, string value) 
         {
             PlayerPrefs.SetString(str, value);
             PlayerPrefs.Save();
         }
 
-        private void SaveByPlayerPrefs(string str, float val) 
+        public static void SaveByPlayerPrefs(string str, float value) 
         {
             PlayerPrefs.SetFloat(str, value);
             PlayerPrefs.Save();
         }
         //
         // 读取prefs
-        private int LoadByPlayerPrefs(string str) 
+        public static T LoadByPlayerPrefs<T>(string str) 
         {
-            if (PlayerPrefs.HasKey(str)) {
-                return PlayerPrefs.GetInt(str);
+            Type t = typeof(T);
+            if (!PlayerPrefs.HasKey(str)) {
+                return default(T);
             }
-            return null;
+            if (t == typeof(int)) 
+            {
+                 return (T)(System.Object)PlayerPrefs.GetInt(str);
+            } else if(t == typeof(string)) 
+            {
+                return (T)(System.Object)PlayerPrefs.GetString(str);
+            } else if(t == typeof(float)) 
+            {
+                return (T)(System.Object)PlayerPrefs.GetFloat(str);
+            }
+            return default(T);
         }
 
-        private string LoadByPlayerPrefs(string str) 
-        {
-            if (PlayerPrefs.HasKey(str)) {
-                return PlayerPrefs.GetString(str);
-            }
-            return null;
-        }
+        // private string LoadByPlayerPrefs(string str) 
+        // {
+        //     if (PlayerPrefs.HasKey(str)) {
+        //         return PlayerPrefs.GetString(str);
+        //     }
+        //     return null;
+        // }
 
-        private float LoadByPlayerPrefs(string str) 
-        {
-            if (PlayerPrefs.HasKey(str)) {
-                return PlayerPrefs.GetFloat(str);
-            }
-            return null;
-        }
+        // private float LoadByPlayerPrefs(string str) 
+        // {
+        //     if (PlayerPrefs.HasKey(str)) {
+        //         return PlayerPrefs.GetFloat(str);
+        //     }
+        //     return null;
+        // }
         //
 
 

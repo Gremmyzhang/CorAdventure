@@ -5,6 +5,8 @@ using TinaX.VFSKit;
 using UnityEngine.UI;
 using UnityEngine;
 using DG.Tweening;
+using CorAdventure.SaveModel;
+
 
 namespace CorAdventure
 {
@@ -26,6 +28,7 @@ namespace CorAdventure
             Debug.Log("===================game start==========================");
             StageController.Instance.InitModel();
             InitView();
+            
         }
         // 页面初始化
         private void InitView() {
@@ -83,6 +86,18 @@ namespace CorAdventure
             mySequence.Append(newText.transform.DOScale(new Vector2 (1.56f, 1.56f), 0.1f));
         }
 
+        private void testfuc() {
+            // test for save by prefs
+            // string nameP = "fly";
+            // int numP = 10;
+            // float agesP = 1.6f;
+            // SaveGame.SaveByPlayerPrefs(nameof(nameP), nameP);
+            // SaveGame.SaveByPlayerPrefs(nameof(numP), numP);
+            // SaveGame.SaveByPlayerPrefs(nameof(agesP), agesP);
+            // Debug.Log(SaveGame.LoadByPlayerPrefs<string>(nameof(nameP)));
+            // Debug.Log(SaveGame.LoadByPlayerPrefs<int>(nameof(numP)));
+            // Debug.Log(SaveGame.LoadByPlayerPrefs<float>(nameof(agesP)));
+        }
 
     }
 }
