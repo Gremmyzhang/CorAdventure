@@ -1,2 +1,3 @@
 # CorAdventure
-a demo 
+a demo for mouse game
+
