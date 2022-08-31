@@ -60,22 +60,6 @@ namespace MVCBase
             localData = JsonMapper.ToObject<D>(localDataStr);
         }
 
-        private void GetLocalData(string name)
-        {
-            if (GetLocalDataKey(name) == "")
-            {
-                return;
-            }
- 
-            string localDataStr = PlayerPrefs.GetString(GetLocalDataKey(name), "");
-            Debug.Log(localDataStr);
-            if (localDataStr == null || localDataStr == "")
-            {
-                return;
-            }
- 
-            localData = JsonMapper.ToObject<D>(localDataStr);
-        }
 
 
  

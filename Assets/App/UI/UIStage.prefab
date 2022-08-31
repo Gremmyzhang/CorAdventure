@@ -1206,6 +1206,12 @@ MonoBehaviour:
     Object: {fileID: 1448930552937558992}
   - Name: newButton
     Object: {fileID: 1874298273553228667}
+  - Name: shakeText3
+    Object: {fileID: 2070580375018534893}
+  - Name: shakeText1
+    Object: {fileID: 4064189675195324635}
+  - Name: shakeText2
+    Object: {fileID: 8381579146495791171}
   TypeBindInfos: []
 --- !u!1 &5254532054760338553
 GameObject:
