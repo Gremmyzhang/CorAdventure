@@ -1,15 +1,20 @@
-public class Singleton<T> where T : new()
+public abstract class Singleton<T> where T : class, new()
 {
-    private static T _instance;
+    private static T instance = null;
+ 
+    // 多线程安全机制
+    private static readonly object locker = new object();
+ 
     public static T Instance
     {
         get
         {
-            if (_instance == null)
+            lock (locker)
             {
-                _instance = new T();
+                if (instance == null)
+                    instance = new T();
+                return instance;
             }
-            return _instance;
         }
     }
 }
