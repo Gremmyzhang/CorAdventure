@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.IO;
 
 namespace CorAdventure.SaveModel 
 {
@@ -11,18 +12,21 @@ namespace CorAdventure.SaveModel
         public static void SaveByPlayerPrefs(string str, int value) 
         {
             PlayerPrefs.SetInt(str, value);
+
             PlayerPrefs.Save();
         }
 
         public static void SaveByPlayerPrefs(string str, string value) 
         {
             PlayerPrefs.SetString(str, value);
+
             PlayerPrefs.Save();
         }
 
         public static void SaveByPlayerPrefs(string str, float value) 
         {
             PlayerPrefs.SetFloat(str, value);
+
             PlayerPrefs.Save();
         }
         //
@@ -46,24 +50,35 @@ namespace CorAdventure.SaveModel
             return default(T);
         }
 
-        // private string LoadByPlayerPrefs(string str) 
-        // {
-        //     if (PlayerPrefs.HasKey(str)) {
-        //         return PlayerPrefs.GetString(str);
-        //     }
-        //     return null;
-        // }
+        public static void SaveByJson<T>(string name, T value) {
 
-        // private float LoadByPlayerPrefs(string str) 
-        // {
-        //     if (PlayerPrefs.HasKey(str)) {
-        //         return PlayerPrefs.GetFloat(str);
-        //     }
-        //     return null;
-        // }
-        //
+            string JsonString = JsonUtility.ToJson(value);
 
+            StreamWriter sw = new StreamWriter(Application.dataPath + "/Data/" + name + ".zl");
 
+            sw.Write(JsonString);
+
+            sw.Close();
+        }
+
+        public static T LoadByJson<T>(string name) {
+            
+            if (File.Exists(Application.dataPath + "/Data/" + name + ".zl")) 
+            {
+                StreamReader sr = new StreamReader(Application.dataPath + "/Data/" + name + ".zl");
+
+                string JsonString = sr.ReadToEnd();
+
+                sr.Close();
+
+                T value = JsonUtility.FromJson<T>(JsonString);
+                return value;
+            } 
+            else {
+                Debug.Log("File Not Found");
+                return default(T);
+            }
+        }
     }
 }
 

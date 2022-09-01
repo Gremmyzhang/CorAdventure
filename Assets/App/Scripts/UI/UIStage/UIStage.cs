@@ -14,8 +14,15 @@ namespace CorAdventure
     {
         [Binding("newText")]
         public Text newText;
-        [Binding("newButton")]
-        public Button newButton;
+        [Binding("newText")]
+        public Button firstButton;
+        [Binding("loadText")]
+        public Button loadButton;
+        [Binding("exitText")]
+        public Button exitButton;
+
+        // [Binding("newButton")]
+        // public Button newButton;
         [Binding("shakeText3")]
         public Text shakeText3;
         [Binding("shakeText1")]
@@ -23,19 +30,41 @@ namespace CorAdventure
         [Binding("shakeText2")]
         public Text shakeText2;
 
+        [Binding("circleMain")]
+        public Image circleMain;
 
+        [Binding("go_Circle3")]
+        public Image go_Circle3;
+        [Binding("go_Circle4")]
+        public Image go_Circle4;
+        [Binding("go_Circle5")]
+        public Image go_Circle5;
+        [Binding("go_Circle6")]
+        public Image go_Circle6;
+
+        [Inject] public IUIKit UIKit { get; set; }
+        // public Image[] CiecleArray= new Image[]{circleMain, go_Circle3, go_Circle4, go_Circle5, go_Circle6};
+        public class PlayerPro 
+        {
+            public string name;
+            public int level;
+            public string time;
+        } 
         public override async void Start() {
             Debug.Log("===================game start==========================");
             StageController.Instance.InitModel();
             InitView();
-            
+            testfuc();
         }
         // 页面初始化
         private void InitView() {
             setLocalPosition();
             textFall();
             InitDelegate();
-            newButton.onClick.AddListener(scaleText);
+            breathUI();
+            firstButton.onClick.AddListener(() => {scaleText(firstButton.transform);});
+            loadButton.onClick.AddListener(() => {scaleText(loadButton.transform); UIKit.OpenUIAsync("UILoadGame", new UIStage());});
+            exitButton.onClick.AddListener(() => {scaleText(exitButton.transform);});
         }
 
         // 初始化model的委托
@@ -55,35 +84,68 @@ namespace CorAdventure
 
         // 初始化页面标题的坐标
         private void setLocalPosition() {
-            shakeText1.transform.localPosition = new Vector3(-691, 471, 0);
-            shakeText2.transform.localPosition = new Vector3(-568, 374, 0);
+            shakeText1.transform.localPosition = new Vector3(-953, 528, 0);
+            shakeText2.transform.localPosition = new Vector3(-767, 453, 0);
         }
         // 页面进入的标题动画
         private void textFall() {
-            Vector3 no1Start = new Vector3(-691, 471, 0);
-            Vector3 no2Start = new Vector3(-568, 374, 0);
-            Vector3 no1End = new Vector3(-704, 206, 0);
-            Vector3 no2End = new Vector3(-581, 109, 0);
+            Vector3 no1Start = new Vector3(-953, 528, 0);
+            Vector3 no2Start = new Vector3(-767, 453, 0);
+            Vector3 no1End = new Vector3(-918, 221, 0);
+            Vector3 no2End = new Vector3(-732, 146, 0);
 
             Sequence mySequence = DOTween.Sequence();
             mySequence.Append(shakeText1.transform.DOLocalMove(no1End, 0.5f).SetEase(Ease.InExpo));
-            mySequence.Append(shakeText1.transform.DOLocalMove(new Vector3(-712, 281, 0), 0.2f).SetEase(Ease.OutExpo));
+            mySequence.Append(shakeText1.transform.DOLocalMove(new Vector3(-927, 302, 0), 0.2f).SetEase(Ease.OutExpo));
             mySequence.Append(shakeText1.transform.DOLocalMove(no1End, 0.2f).SetEase(Ease.InExpo));
+            mySequence.Append(shakeText1.transform.DOLocalMove(new Vector3(-923, 280, 0), 0.2f).SetEase(Ease.OutExpo));
+            mySequence.Append(shakeText1.transform.DOLocalMove(no1End, 0.2f).SetEase(Ease.InExpo));
+
             Sequence mySequence1 = DOTween.Sequence();
             mySequence1.Append(shakeText2.transform.DOLocalMove(no2End, 0.5f).SetEase(Ease.InExpo));
-            mySequence1.Append(shakeText2.transform.DOLocalMove(new Vector3(-576, 205, 0), 0.2f).SetEase(Ease.OutExpo));
+            mySequence1.Append(shakeText2.transform.DOLocalMove(new Vector3(-750, 208, 0), 0.2f).SetEase(Ease.OutExpo));
             mySequence1.Append(shakeText2.transform.DOLocalMove(no2End, 0.2f).SetEase(Ease.InExpo));
+            mySequence1.Append(shakeText2.transform.DOLocalMove(new Vector3(-740, 180, 0), 0.2f).SetEase(Ease.OutExpo));
+
             mySequence1.Append(shakeText3.transform.DOShakeRotation(0.8f, new Vector3(0, 0, 10), 10, 180, false).SetLoops(0, LoopType.Incremental));
         }
 
         // 按钮点击的动画
-        private void scaleText() {
+        private void scaleText(Transform t1) {
             Sequence mySequence = DOTween.Sequence();
 
-            mySequence.Append(newText.transform.DOScale(new Vector2 (1.25f, 1.25f), 0.02f));
-            mySequence.Append(newText.transform.DOScale(new Vector2 (1.45f, 1.45f), 0.05f));
-            mySequence.Append(newText.transform.DOScale(new Vector2 (1.6f, 1.6f), 0.05f));
-            mySequence.Append(newText.transform.DOScale(new Vector2 (1.56f, 1.56f), 0.1f));
+            mySequence.Append(t1.DOScale(new Vector2 (1.25f, 1.25f), 0.02f));
+            mySequence.Append(t1.DOScale(new Vector2 (1.45f, 1.45f), 0.05f));
+            mySequence.Append(t1.DOScale(new Vector2 (1.6f, 1.6f), 0.05f));
+            mySequence.Append(t1.DOScale(new Vector2 (1.56f, 1.56f), 0.1f));
+            mySequence.Append(t1.DOScale(new Vector2 (1f, 1f), 0.01f));
+        }
+
+        private void breathUI() {
+            Vector3 effectScale = circleMain.transform.localScale - new Vector3(0.025f, 0.025f, 0);
+            Tweener tweener = circleMain.transform.DOScale(effectScale, 2f);
+            tweener.SetLoops(-1, LoopType.Yoyo);
+            tweener.Play();
+
+            Vector3 effectScale1 = go_Circle3.transform.localScale - new Vector3(0.03f, 0.03f, 0);
+            Tweener tweener1 = go_Circle3.transform.DOScale(effectScale1, 3f);
+            tweener1.SetLoops(-1, LoopType.Yoyo);
+            tweener1.Play();
+
+            Vector3 effectScale2 = go_Circle4.transform.localScale + new Vector3(0.02f, 0.02f, 0);
+            Tweener tweener2 = go_Circle4.transform.DOScale(effectScale2, 2f);
+            tweener2.SetLoops(-1, LoopType.Yoyo);
+            tweener2.Play();
+
+            Vector3 effectScale3 = go_Circle5.transform.localScale + new Vector3(0.02f, 0.02f, 0);
+            Tweener tweener3 = go_Circle5.transform.DOScale(effectScale3, 3f);
+            tweener3.SetLoops(-1, LoopType.Yoyo);
+            tweener3.Play();
+
+             Vector3 effectScale4 = go_Circle6.transform.localScale - new Vector3(0.018f, 0.018f, 0);
+            Tweener tweener4 = go_Circle6.transform.DOScale(effectScale4, 1.5f);
+            tweener4.SetLoops(-1, LoopType.Yoyo);
+            tweener4.Play();
         }
 
         private void testfuc() {
@@ -97,6 +159,17 @@ namespace CorAdventure
             // Debug.Log(SaveGame.LoadByPlayerPrefs<string>(nameof(nameP)));
             // Debug.Log(SaveGame.LoadByPlayerPrefs<int>(nameof(numP)));
             // Debug.Log(SaveGame.LoadByPlayerPrefs<float>(nameof(agesP)));
+
+            // var uikit = core.GetService<IUIKit>();
+            // PlayerPro p1 = new PlayerPro();
+            // p1.name = "zhangweidi";
+            // p1.level = 2222;
+            // p1.time = "2022/9/1";
+            // SaveGame.SaveByJson<PlayerPro>(nameof(PlayerPro), p1);
+            // PlayerPro p1 = SaveGame.LoadByJson<PlayerPro>(nameof(PlayerPro));
+            // Debug.Log(p1.name);
+            // Debug.Log(p1.level);
+            // Debug.Log(p1.time);
         }
 
     }
