@@ -53,12 +53,13 @@ namespace CorAdventure.SaveModel
         public static void SaveByJson<T>(string name, T value) {
 
             string JsonString = JsonUtility.ToJson(value);
-
+            
             StreamWriter sw = new StreamWriter(Application.dataPath + "/Data/" + name + ".zl");
 
             sw.Write(JsonString);
 
             sw.Close();
+            Debug.Log("Save End");
         }
 
         public static T LoadByJson<T>(string name) {

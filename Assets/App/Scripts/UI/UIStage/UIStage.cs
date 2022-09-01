@@ -44,12 +44,19 @@ namespace CorAdventure
 
         [Inject] public IUIKit UIKit { get; set; }
         // public Image[] CiecleArray= new Image[]{circleMain, go_Circle3, go_Circle4, go_Circle5, go_Circle6};
+        public class People {
+            public string sex;
+        }
+
         public class PlayerPro 
         {
             public string name;
             public int level;
             public string time;
+            public People pp1;
+            public string test;
         } 
+        
         public override async void Start() {
             Debug.Log("===================game start==========================");
             StageController.Instance.InitModel();
@@ -161,15 +168,21 @@ namespace CorAdventure
             // Debug.Log(SaveGame.LoadByPlayerPrefs<float>(nameof(agesP)));
 
             // var uikit = core.GetService<IUIKit>();
+
+            // People o1 = new People();
+            // o1.sex = "male";
             // PlayerPro p1 = new PlayerPro();
             // p1.name = "zhangweidi";
-            // p1.level = 2222;
+            // p1.level = 222233333;
             // p1.time = "2022/9/1";
+            // p1.pp1 = o1;
+            // p1.test = "true";
             // SaveGame.SaveByJson<PlayerPro>(nameof(PlayerPro), p1);
             // PlayerPro p1 = SaveGame.LoadByJson<PlayerPro>(nameof(PlayerPro));
             // Debug.Log(p1.name);
             // Debug.Log(p1.level);
             // Debug.Log(p1.time);
+            // Debug.Log(p1.pp1.sex);
         }
 
     }
