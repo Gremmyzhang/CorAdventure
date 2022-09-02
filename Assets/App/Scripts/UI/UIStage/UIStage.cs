@@ -8,6 +8,7 @@ using DG.Tweening;
 using CorAdventure.SaveModel;
 using Newtonsoft.Json;
 using RSG;
+using System;
 
 
 namespace CorAdventure
@@ -75,28 +76,20 @@ namespace CorAdventure
             int i=1;
             firstButton.onClick.AddListener(() => {scaleText(firstButton.transform);});
             loadButton.onClick.AddListener(() => {
-                var p = new Promise<int>((resolve,reject)=>{
-                    resolve(i);
-                    });
-                p.Then((val)=>{
-                    scaleText(loadButton.transform);
-                    new Promise((resolve,reject) => {
-                        resolve();
-                    }).Then(()=>{
-                        UIKit.OpenUIAsync("UILoadGame", new UIStage());
-                        Debug.Log("second:"+val);
-                    });
+                scaleText(loadButton.transform).AppendCallback(
+                    () => {
+                    UIKit.OpenUIAsync("UILoadGame", new UIStage());
                 });
                 // Promise promise = new Promise(function(resolve, reject));
                 // promise.Then(() => {
                 //     // scaleText(loadButton.transform);
                 //     Debug.Log(1);
                 //     }).Then(() => {
-                //         Debug.Log(2);   
+                //         Debug.Log(2);
                 //         // UIKit.OpenUIAsync("UILoadGame", new UIStage());
                 //         });
                 // var sequence = Promise.Sequence(scaleText(loadButton.transform), UIKit.OpenUIAsync("UILoadGame", new UIStage()));
-                // scaleText(loadButton.transform); 
+                // scaleText(loadButton.transform);
                 // UIKit.OpenUIAsync("UILoadGame", new UIStage());
                 });
             exitButton.onClick.AddListener(() => {scaleText(exitButton.transform);});
@@ -146,7 +139,7 @@ namespace CorAdventure
         }
 
         // 按钮点击的动画
-        private void scaleText(Transform t1) {
+        private Sequence scaleText(Transform t1) {
             Sequence mySequence = DOTween.Sequence();
 
             mySequence.Append(t1.DOScale(new Vector2 (1.25f, 1.25f), 0.02f));
@@ -154,6 +147,7 @@ namespace CorAdventure
             mySequence.Append(t1.DOScale(new Vector2 (1.6f, 1.6f), 0.05f));
             mySequence.Append(t1.DOScale(new Vector2 (1.56f, 1.56f), 0.1f));
             mySequence.Append(t1.DOScale(new Vector2 (1f, 1f), 0.01f));
+            return mySequence;
         }
 
         private void breathUI() {
