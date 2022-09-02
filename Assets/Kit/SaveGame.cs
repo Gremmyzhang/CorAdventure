@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.IO;
+using Newtonsoft.Json;
 
 namespace CorAdventure.SaveModel 
 {
@@ -52,7 +53,7 @@ namespace CorAdventure.SaveModel
 
         public static void SaveByJson<T>(string name, T value) {
 
-            string JsonString = JsonUtility.ToJson(value);
+            string JsonString = JsonConvert.SerializeObject(value);
             
             StreamWriter sw = new StreamWriter(Application.dataPath + "/Data/" + name + ".zl");
 
@@ -72,7 +73,7 @@ namespace CorAdventure.SaveModel
 
                 sr.Close();
 
-                T value = JsonUtility.FromJson<T>(JsonString);
+                T value = JsonConvert.DeserializeObject<T>(JsonString);
                 return value;
             } 
             else {

@@ -48,7 +48,8 @@
     "io.nekonya.tinax.uikit": "6.6.23",
     "io.nekonya.tinax.i18n": "6.6.6",
     "io.nekonya.tinax.ilruntime": "6.6.5",
-    "io.nekonya.tinax.tween": "6.6.3"
+    "io.nekonya.tinax.tween": "6.6.3",
+    "com.unity.nuget.newtonsoft-json": "3.0.1"
   },
   "scopedRegistries": [
     {

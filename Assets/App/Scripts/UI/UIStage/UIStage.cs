@@ -6,6 +6,8 @@ using UnityEngine.UI;
 using UnityEngine;
 using DG.Tweening;
 using CorAdventure.SaveModel;
+using Newtonsoft.Json;
+using RSG;
 
 
 namespace CorAdventure
@@ -62,6 +64,7 @@ namespace CorAdventure
             StageController.Instance.InitModel();
             InitView();
             testfuc();
+            // Promise p = new Promise();
         }
         // 页面初始化
         private void InitView() {
@@ -169,15 +172,15 @@ namespace CorAdventure
 
             // var uikit = core.GetService<IUIKit>();
 
-            // People o1 = new People();
-            // o1.sex = "male";
-            // PlayerPro p1 = new PlayerPro();
-            // p1.name = "zhangweidi";
-            // p1.level = 222233333;
-            // p1.time = "2022/9/1";
-            // p1.pp1 = o1;
-            // p1.test = "true";
-            // SaveGame.SaveByJson<PlayerPro>(nameof(PlayerPro), p1);
+            People o1 = new People();
+            o1.sex = "male";
+            PlayerPro p1 = new PlayerPro();
+            p1.name = "zhangweidi";
+            p1.level = 222233333;
+            p1.time = "2022/9/1";
+            p1.pp1 = o1;
+            p1.test = "true";
+            SaveGame.SaveByJson<PlayerPro>(nameof(PlayerPro), p1);
             // PlayerPro p1 = SaveGame.LoadByJson<PlayerPro>(nameof(PlayerPro));
             // Debug.Log(p1.name);
             // Debug.Log(p1.level);
