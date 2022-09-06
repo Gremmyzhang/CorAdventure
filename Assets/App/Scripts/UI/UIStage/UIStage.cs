@@ -78,20 +78,29 @@ namespace CorAdventure
             loadButton.onClick.AddListener(() => {
                 scaleText(loadButton.transform).AppendCallback(
                     () => {
-                    UIKit.OpenUIAsync("UILoadGame", new UIStage());
+                    UIKit.OpenUIAsync("UILoadGame", new UILoadGame());
                 });
-                // Promise promise = new Promise(function(resolve, reject));
+                // scaleText(loadButton.transform).Then(() => {
+                //     Debug.Log(22222222222222);
+                //     UIKit.OpenUIAsync("UILoadGame", new UILoadGame());
+                // });
+                    // Debug.Log(1111111111111111);
+                    // Promise promise = new Promise();
+                    // promise.Then(() => {
+                    //         scaleText(loadButton.transform);
+                    //     }).Then(() => {
+                    //         UIKit.OpenUIAsync("UILoadGame", new UIStage());
+                    //     });
+                });
                 // promise.Then(() => {
-                //     // scaleText(loadButton.transform);
+                //     return scaleText(loadButton.transform);
                 //     Debug.Log(1);
+                //     // return 1;
                 //     }).Then(() => {
                 //         Debug.Log(2);
-                //         // UIKit.OpenUIAsync("UILoadGame", new UIStage());
+                //         UIKit.OpenUIAsync("UILoadGame", new UIStage());
                 //         });
-                // var sequence = Promise.Sequence(scaleText(loadButton.transform), UIKit.OpenUIAsync("UILoadGame", new UIStage()));
-                // scaleText(loadButton.transform);
-                // UIKit.OpenUIAsync("UILoadGame", new UIStage());
-                });
+                // });
             exitButton.onClick.AddListener(() => {scaleText(exitButton.transform);});
         }
 
@@ -141,7 +150,7 @@ namespace CorAdventure
         // 按钮点击的动画
         private Sequence scaleText(Transform t1) {
             Sequence mySequence = DOTween.Sequence();
-
+            var promise = new Promise();
             mySequence.Append(t1.DOScale(new Vector2 (1.25f, 1.25f), 0.02f));
             mySequence.Append(t1.DOScale(new Vector2 (1.45f, 1.45f), 0.05f));
             mySequence.Append(t1.DOScale(new Vector2 (1.6f, 1.6f), 0.05f));
