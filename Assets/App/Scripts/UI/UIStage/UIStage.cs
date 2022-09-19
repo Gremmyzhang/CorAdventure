@@ -214,6 +214,21 @@ namespace CorAdventure
             // Debug.Log(p1.level);
             // Debug.Log(p1.time);
             // Debug.Log(p1.pp1.sex);
+            
+            // LoadModel.playerDate p1 = new LoadModel.playerDate();
+            // p1.Id = 0;
+            // p1.Pot = "自己的家里";
+            // p1.Time = "2022/9/6 16:22:10";
+            // p1.PlayerTime = 0;
+
+            // LoadModel.playerDate p2 = new LoadModel.playerDate();
+            // p2.Id = 1;
+            // p2.Pot = "小镇的杂货铺";
+            // p2.Time = "2022/9/6 18:22:10";
+            // p2.PlayerTime = 1;
+
+            // SaveGame.SaveByJson<LoadModel.playerDate>("player0", p1);
+            // SaveGame.SaveByJson<LoadModel.playerDate>("player1", p2);
         }
 
     }

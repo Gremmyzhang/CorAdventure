@@ -24,6 +24,19 @@ public class LoadModel : Singleton<LoadModel>
             }
         }
 
+        public string Pot
+        {
+            get
+            {
+                return pot;
+            }
+
+            set 
+            {
+                pot = value;
+            }
+        }
+
         public string Time
         {
             get
@@ -63,9 +76,10 @@ public class LoadModel : Singleton<LoadModel>
             }
         }
     }
-    public playerDate[] allPlayer;
-
     private int countNum = 10;
+    public List<playerDate> allPlayer = new List<playerDate>();
+
+    
 
     public int CountNum
     {

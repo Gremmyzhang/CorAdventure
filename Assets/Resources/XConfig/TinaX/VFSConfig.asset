@@ -17,6 +17,7 @@ MonoBehaviour:
     ObfuscateDirectoryStructure: 0
     FolderPaths:
     - Assets/App/UI
+    - Assets/App/Scenes/Game
     AssetPaths: []
     GroupAssetsHandleMode: 2
     ExtensionGroup: 0
@@ -34,7 +35,7 @@ MonoBehaviour:
   - .apk
   - .so
   GlobalVFS_Ignore_Path_Item:
-  - Resources
   - Editor
+  - Resources
   InitWebVFSOnStart: 0
   DefaultWebVFSBaseUrl: http://127.0.0.1:8080/files/
