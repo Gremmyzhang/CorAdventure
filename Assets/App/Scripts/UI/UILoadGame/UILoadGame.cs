@@ -43,7 +43,13 @@ public class UILoadGame : XUIBehaviour
     
     public override void OnDestroy() {
         
-        Debug.Log(1111);
+        // Debug.Log(1111);
+        // for (int i = 0; i < loadList.Count; i++) {
+        //     if (loadList[i] != null) {
+        //         Debug.Log(i);
+        //         GameObject.Destroy(loadList[i].gameObject);
+        //     }
+        // }
     }
  
     private void BindListener() {
@@ -55,6 +61,7 @@ public class UILoadGame : XUIBehaviour
     private void InitView() {
         int tempNum = LoadModel.Instance.CountNum;
         int countNum = LoadModel.Instance.allPlayer.Count;
+        Debug.Log("countNum: " + countNum);
         for (int i = 0; i < tempNum; i++) {
             var gameObj = GameObject.Instantiate(go_item.gameObject);
             gameObj.transform.SetParent(go_item.parent);

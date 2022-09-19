@@ -7,7 +7,7 @@ public class LoadContorller : MonoSingleton<LoadContorller>
 {
 
     public void LoadData(){
-
+         LoadModel.Instance.allPlayer.Clear();
         int num = LoadModel.Instance.CountNum;
         for (int i = 0; i < num; i++) {
             if (default(LoadModel.playerDate) == SaveGame.LoadByJson<LoadModel.playerDate>("player"+i)) {
