@@ -50,6 +50,7 @@ public class UILoadGame : XUIBehaviour
         //         GameObject.Destroy(loadList[i].gameObject);
         //     }
         // }
+        
     }
  
     private void BindListener() {

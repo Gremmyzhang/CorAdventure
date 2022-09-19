@@ -46,6 +46,7 @@ namespace CorAdventure
         public Image go_Circle6;
 
         [Inject] public IUIKit UIKit { get; set; }
+        [Inject] public IVFS vfs { get; set; }
         // public Image[] CiecleArray= new Image[]{circleMain, go_Circle3, go_Circle4, go_Circle5, go_Circle6};
         public class People {
             public string sex;
@@ -74,24 +75,22 @@ namespace CorAdventure
             InitDelegate();
             breathUI();
             int i=1;
-            firstButton.onClick.AddListener(() => {scaleText(firstButton.transform);});
+            firstButton.onClick.AddListener(() => {scaleText(firstButton.transform).AppendCallback(
+                () => {
+                    // VFS.LoadScene("Assets/App/Scenes/Game/GameMain.unity");
+                    vfs.LoadSceneAsync("Assets/App/Scenes/Game/GameMain.unity",(scene, err) => 
+                    {
+                        Debug.Log("reborn");
+                        scene.OpenScene();
+                    });
+                }
+            );});
             loadButton.onClick.AddListener(() => {
                 scaleText(loadButton.transform).AppendCallback(
                     () => {
                     UIKit.OpenUIAsync("UILoadGame", new UILoadGame());
                 });
-                // scaleText(loadButton.transform).Then(() => {
-                //     Debug.Log(22222222222222);
-                //     UIKit.OpenUIAsync("UILoadGame", new UILoadGame());
-                // });
-                    // Debug.Log(1111111111111111);
-                    // Promise promise = new Promise();
-                    // promise.Then(() => {
-                    //         scaleText(loadButton.transform);
-                    //     }).Then(() => {
-                    //         UIKit.OpenUIAsync("UILoadGame", new UIStage());
-                    //     });
-                });
+            });
                 // promise.Then(() => {
                 //     return scaleText(loadButton.transform);
                 //     Debug.Log(1);
