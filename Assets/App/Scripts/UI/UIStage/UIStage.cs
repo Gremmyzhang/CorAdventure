@@ -73,15 +73,19 @@ namespace CorAdventure
             setLocalPosition();
             textFall();
             InitDelegate();
-            breathUI();
+            // Tweener[] t = breathUI();
             int i=1;
             firstButton.onClick.AddListener(() => {scaleText(firstButton.transform).AppendCallback(
                 () => {
                     // VFS.LoadScene("Assets/App/Scenes/Game/GameMain.unity");
+                    // closeBreath(t);
+                    UIKit.CloseUI("UIStage");
+                    UIKit.OpenUI("UIBlackLoad", new UILoadBlack());
                     vfs.LoadSceneAsync("Assets/App/Scenes/Game/GameMain.unity",(scene, err) => 
                     {
                         Debug.Log("reborn");
                         scene.OpenScene();
+                        UIKit.CloseUI("UIBlackLoad");
                     });
                 }
             );});
@@ -158,7 +162,7 @@ namespace CorAdventure
             return mySequence;
         }
 
-        private void breathUI() {
+        private Tweener[] breathUI() {
             Vector3 effectScale = circleMain.transform.localScale - new Vector3(0.025f, 0.025f, 0);
             Tweener tweener = circleMain.transform.DOScale(effectScale, 2f);
             tweener.SetLoops(-1, LoopType.Yoyo);
@@ -179,12 +183,22 @@ namespace CorAdventure
             tweener3.SetLoops(-1, LoopType.Yoyo);
             tweener3.Play();
 
-             Vector3 effectScale4 = go_Circle6.transform.localScale - new Vector3(0.018f, 0.018f, 0);
+            Vector3 effectScale4 = go_Circle6.transform.localScale - new Vector3(0.018f, 0.018f, 0);
             Tweener tweener4 = go_Circle6.transform.DOScale(effectScale4, 1.5f);
             tweener4.SetLoops(-1, LoopType.Yoyo);
             tweener4.Play();
-        }
 
+            Tweener[] t = {tweener, tweener1, tweener2, tweener3, tweener4};
+            // closeBreath(t);
+            return t;
+        }
+        
+        private void closeBreath(Tweener[] t) {
+            for (int i = 0; i < t.Length; i++) {
+                t[i].Kill();
+            }
+        }
+        
         private void testfuc() {
             // test for save by prefs
             // string nameP = "fly";

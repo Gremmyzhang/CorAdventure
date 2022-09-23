@@ -17,3 +17,5 @@ MonoBehaviour:
     Path: Assets/App/UI/UIStage.prefab
   - Name: UILoadGame
     Path: Assets/App/UI/UILoadGame.prefab
+  - Name: UIBlackLoad
+    Path: Assets/App/UI/UIBlackLoad.prefab

@@ -23,7 +23,8 @@ namespace CorAdventure
         {
             //open ui
             var uikit = core.GetService<IUIKit>();
-            _ = uikit.OpenUIAsync("UIStage", new UIStage());
+            _ = uikit.OpenUIAsync("UIBlackLoad", new UILoadBlack());
+            // _ = uikit.OpenUIAsync("UIStage", new UIStage());
             // //load scene
             // var vfs = core.GetService<IVFS>();
             // vfs.LoadSceneAsync("Assets/App/Scenes/App.Main.unity",(scene, err) => 
